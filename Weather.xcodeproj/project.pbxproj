@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		22C6729E23748ADA0026C852 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C6729D23748ADA0026C852 /* LocationViewController.swift */; };
+		22E7A88323AC312C00032434 /* ClothingCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E7A88223AC312C00032434 /* ClothingCache.swift */; };
 		22EEDC6723664473002C3CCB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EEDC6623664473002C3CCB /* AppDelegate.swift */; };
 		22EEDC6923664473002C3CCB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EEDC6823664473002C3CCB /* SceneDelegate.swift */; };
 		22EEDC6B23664473002C3CCB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EEDC6A23664473002C3CCB /* ViewController.swift */; };
@@ -32,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		22C6729D23748ADA0026C852 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		22E7A88223AC312C00032434 /* ClothingCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothingCache.swift; sourceTree = "<group>"; };
 		22EEDC6323664473002C3CCB /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22EEDC6623664473002C3CCB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22EEDC6823664473002C3CCB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				22EEDC6F23664473002C3CCB /* Weather.xcdatamodeld */,
 				22FFB14323AC1344006DBECB /* WeatherViewController.swift */,
 				22FFB14523AC1391006DBECB /* AddClothingViewController.swift */,
+				22E7A88223AC312C00032434 /* ClothingCache.swift */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -214,6 +217,7 @@
 			files = (
 				22C6729E23748ADA0026C852 /* LocationViewController.swift in Sources */,
 				22FFB14623AC1391006DBECB /* AddClothingViewController.swift in Sources */,
+				22E7A88323AC312C00032434 /* ClothingCache.swift in Sources */,
 				22FFB14423AC1344006DBECB /* WeatherViewController.swift in Sources */,
 				22EEDC7123664473002C3CCB /* Weather.xcdatamodeld in Sources */,
 				22EEDC6B23664473002C3CCB /* ViewController.swift in Sources */,
