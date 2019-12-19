@@ -13,6 +13,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
 
     }
+    
+    @IBAction func onClick(_ sender: Any) {
+        print("clicked")
+    }
         
 }
 

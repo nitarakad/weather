@@ -10,11 +10,8 @@ import UIKit
 
 class LocationViewController: UIViewController {
     
-    let locationTitle = "Set Your Location"
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         
-        self.view.backgroundColor = .systemBlue
     }
 }
