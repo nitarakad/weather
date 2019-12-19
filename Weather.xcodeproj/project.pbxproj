@@ -16,6 +16,8 @@
 		22EEDC7323664475002C3CCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22EEDC7223664475002C3CCB /* Assets.xcassets */; };
 		22EEDC7623664475002C3CCB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22EEDC7423664475002C3CCB /* LaunchScreen.storyboard */; };
 		22EEDC8123664475002C3CCB /* WeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EEDC8023664475002C3CCB /* WeatherTests.swift */; };
+		22FFB14423AC1344006DBECB /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FFB14323AC1344006DBECB /* WeatherViewController.swift */; };
+		22FFB14623AC1391006DBECB /* AddClothingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FFB14523AC1391006DBECB /* AddClothingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,8 @@
 		22EEDC7C23664475002C3CCB /* WeatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		22EEDC8023664475002C3CCB /* WeatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTests.swift; sourceTree = "<group>"; };
 		22EEDC8223664475002C3CCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		22FFB14323AC1344006DBECB /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
+		22FFB14523AC1391006DBECB /* AddClothingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddClothingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +96,8 @@
 				22EEDC7423664475002C3CCB /* LaunchScreen.storyboard */,
 				22EEDC7723664475002C3CCB /* Info.plist */,
 				22EEDC6F23664473002C3CCB /* Weather.xcdatamodeld */,
+				22FFB14323AC1344006DBECB /* WeatherViewController.swift */,
+				22FFB14523AC1391006DBECB /* AddClothingViewController.swift */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -207,6 +213,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				22C6729E23748ADA0026C852 /* LocationViewController.swift in Sources */,
+				22FFB14623AC1391006DBECB /* AddClothingViewController.swift in Sources */,
+				22FFB14423AC1344006DBECB /* WeatherViewController.swift in Sources */,
 				22EEDC7123664473002C3CCB /* Weather.xcdatamodeld in Sources */,
 				22EEDC6B23664473002C3CCB /* ViewController.swift in Sources */,
 				22EEDC6723664473002C3CCB /* AppDelegate.swift in Sources */,

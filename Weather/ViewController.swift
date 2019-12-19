@@ -9,13 +9,21 @@
 import UIKit
 
 class ViewController: UIViewController {
-        
+    
     override func viewDidLoad() {
 
     }
     
-    @IBAction func onClick(_ sender: Any) {
-        print("clicked")
+    @IBAction func ToLocationScreen(_ sender: Any) {
+        print("Going to Location Screen")
+    }
+    
+    @IBAction func toWeatherScreen(_ sender: Any) {
+        print("Going to Weather Screen")
+    }
+    
+    @IBAction func toAddClothingScreen(_ sender: Any) {
+        print("Going to Add Clothing Screen")
     }
         
 }
