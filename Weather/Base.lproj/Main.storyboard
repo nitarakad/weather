@@ -102,6 +102,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oHw-8F-5CL">
+                                <rect key="frame" x="87" y="191" width="227" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Take Picture of Clothing"/>
+                                <connections>
+                                    <action selector="takePhoto:" destination="Fxl-xH-XFC" eventType="touchUpInside" id="zfV-Af-WJI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="Gbs-H1-MuU"/>
@@ -110,7 +118,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cYN-nB-uuD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1034" y="827"/>
+            <point key="canvasLocation" x="1033.3333333333335" y="826.33928571428567"/>
         </scene>
         <!--Weather View Controller-->
         <scene sceneID="SuP-W2-VTh">
