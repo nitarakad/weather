@@ -13,7 +13,7 @@ class AddClothingViewController: UIViewController, UINavigationControllerDelegat
     
     var imagePicker: UIImagePickerController!
     
-    //@IBOutlet weak var imageView: UIImageView?
+    @IBOutlet weak var imageView: UIImageView!
     
     override func viewDidLoad() {
 
@@ -26,8 +26,8 @@ class AddClothingViewController: UIViewController, UINavigationControllerDelegat
         present(imagePicker, animated: true, completion: nil)
     }
     
-//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-//        imagePicker.dismiss(animated: true, completion: nil)
-//        imageView?.image = info[.originalImage] as? UIImage
-//    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        imagePicker.dismiss(animated: true, completion: nil)
+        imageView.image = info[.originalImage] as? UIImage
+    }
 }
