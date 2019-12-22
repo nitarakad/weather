@@ -12,6 +12,7 @@ import UIKit
 class AddClothingViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     var imagePicker: UIImagePickerController!
+    var allClothing: Array<UIImage> = []
     
     @IBOutlet weak var imageView: UIImageView!
     
@@ -28,6 +29,9 @@ class AddClothingViewController: UIViewController, UINavigationControllerDelegat
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         imagePicker.dismiss(animated: true, completion: nil)
+        if let imageTaken = info[.originalImage] as? UIImage {
+            allClothing.append(imageTaken)
+        }
         imageView.image = info[.originalImage] as? UIImage
     }
 }
