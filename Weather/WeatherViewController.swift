@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class WeatherViewController: UIViewController {
+    
     override func viewDidLoad() {
 
     }

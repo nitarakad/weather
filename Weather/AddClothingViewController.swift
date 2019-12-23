@@ -12,12 +12,21 @@ import UIKit
 class AddClothingViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     var imagePicker: UIImagePickerController!
-    var allClothing: Array<UIImage> = []
+    //let inputText = UITextField()
+    var currentImage = UIImage()
     
+    struct globalVariables {
+        static var allClothing: Array<UIImage> = []
+        static var clothingDict = Dictionary<UIImage, String>()
+    }
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var inputTextField: UITextField!
     
     override func viewDidLoad() {
-
+        super.viewDidLoad()
+        
+        inputTextField.delegate = self
+        inputTextField.isEnabled = false
     }
     
     @IBAction func takePhoto(_ sender: Any) {
@@ -29,9 +38,25 @@ class AddClothingViewController: UIViewController, UINavigationControllerDelegat
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         imagePicker.dismiss(animated: true, completion: nil)
-        if let imageTaken = info[.originalImage] as? UIImage {
-            allClothing.append(imageTaken)
+        guard let imageTaken = info[.originalImage] as? UIImage else {
+            print("no image")
+            return
         }
-        imageView.image = info[.originalImage] as? UIImage
+        globalVariables.allClothing.append(imageTaken)
+        imageView.image = imageTaken
+        inputTextField.isEnabled = true
+        currentImage = imageTaken
+    }
+}
+
+extension AddClothingViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        inputTextField.resignFirstResponder()
+        if let length = inputTextField.text?.count, length > 0 {
+            globalVariables.clothingDict[currentImage] = inputTextField.text
+        }
+        inputTextField.isEnabled = false
+        print("user hit return button")
+        return true
     }
 }
