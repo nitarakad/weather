@@ -15,6 +15,8 @@ class AddClothingViewController: UIViewController, UINavigationControllerDelegat
         static var allClothing: Array<UIImage> = []
         static var clothingDict = Dictionary<UIImage, String>()
     }
+    
+    @IBOutlet weak var addClothingButton: UIButton!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -60,6 +62,9 @@ extension AddClothingViewController: UITextFieldDelegate {
             globalVariables.clothingDict[currentImage] = inputTextField.text
         }
         inputTextField.isEnabled = false
+        
+        addClothingButton.setTitle("Add Another Clothing!", for: .normal)
+        
         print("user hit return button")
         return true
     }

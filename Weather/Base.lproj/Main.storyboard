@@ -142,6 +142,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Uos-dZ-4OY"/>
                     <connections>
+                        <outlet property="addClothingButton" destination="oHw-8F-5CL" id="MqB-Ly-ZTc"/>
                         <outlet property="imageView" destination="MRd-25-Fha" id="Ava-QT-uNo"/>
                         <outlet property="inputTextField" destination="LCe-1J-UaN" id="JI9-Wq-8Fm"/>
                         <outlet property="scrollView" destination="Fqf-h4-IcJ" id="Nt4-az-ohM"/>

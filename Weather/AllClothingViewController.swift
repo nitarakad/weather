@@ -17,17 +17,15 @@ class AllClothingViewController: UIViewController {
         
         super.viewDidLoad()
 
-        let currX = self.view.bounds.minX + 30.0
+        let currX = self.view.bounds.minX + 32.0
         var currY = self.view.bounds.minY + 10.0
-        let widthIV = CGFloat(272.0)
-        let heightIV = CGFloat(469.0)
         let widthL = CGFloat(200.0)
-        let heightL = CGFloat(100.0)
+        let heightL = CGFloat(50.0)
         for eachImage in AddClothingViewController.globalVariables.allClothing {
             let imageView = UIImageView()
-            imageView.frame = CGRect(x: currX, y: currY, width: widthIV, height: heightIV)
+            imageView.frame = CGRect(x: currX, y: currY, width: eachImage.size.width/10.0, height: eachImage.size.height/10.0)
             let label = UILabel()
-            label.frame = CGRect(x: imageView.frame.minX, y: imageView.frame.maxY + 2.5, width: widthL, height: heightL)
+            label.frame = CGRect(x: imageView.frame.minX, y: imageView.frame.maxY + 1.0, width: widthL, height: heightL)
             imageView.image = eachImage
             label.text = AddClothingViewController.globalVariables.clothingDict[eachImage]
             self.view.addSubview(imageView)
