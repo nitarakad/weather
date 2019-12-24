@@ -47,6 +47,7 @@ class AddClothingViewController: UIViewController, UINavigationControllerDelegat
         globalVariables.allClothing.append(imageTaken)
         imageView.image = imageTaken
         inputTextField.isEnabled = true
+        inputTextField.text = ""
         currentImage = imageTaken
     }
 }
