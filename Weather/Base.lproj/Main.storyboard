@@ -124,6 +124,14 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Jm-y4-7aZ">
+                                        <rect key="frame" x="128" y="653" width="158" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="See All Clothing Added"/>
+                                        <connections>
+                                            <segue destination="iv2-1y-Z5W" kind="show" id="GUG-yf-BB0"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <viewLayoutGuide key="contentLayoutGuide" id="8H1-Hw-Sgo"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="D7Z-Cn-40v"/>
@@ -142,6 +150,33 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cYN-nB-uuD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1033.3333333333335" y="826.33928571428567"/>
+        </scene>
+        <!--All Clothing View Controller-->
+        <scene sceneID="ybS-v3-5Z8">
+            <objects>
+                <viewController id="iv2-1y-Z5W" customClass="AllClothingViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Nl7-BU-M7i">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ysl-cK-iKA">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="VcU-oO-WpX"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="tiJ-z8-wx2"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="6zm-T1-JjY"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="gFV-0c-DZV"/>
+                    <connections>
+                        <outlet property="scrollView" destination="Ysl-cK-iKA" id="iUU-ZC-ICP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="STG-wr-xHx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1047.8260869565217" y="1509.375"/>
         </scene>
         <!--Weather View Controller-->
         <scene sceneID="SuP-W2-VTh">

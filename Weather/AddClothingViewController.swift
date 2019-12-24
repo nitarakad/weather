@@ -22,7 +22,6 @@ class AddClothingViewController: UIViewController, UINavigationControllerDelegat
     var imagePicker: UIImagePickerController!
     var currentImage = UIImage()
     var resetToPoint = CGPoint()
-    //var scrollView: UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,11 +29,6 @@ class AddClothingViewController: UIViewController, UINavigationControllerDelegat
         inputTextField.delegate = self
         inputTextField.isEnabled = false
         
-//        self.view.addSubview(scrollView)
-//        scrollView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 8.0).isActive = true
-//        scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 8.0).isActive = true
-//        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -8.0).isActive = true
-//        scrollView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -8.0).isActive = true
     }
     
     @IBAction func takePhoto(_ sender: Any) {
