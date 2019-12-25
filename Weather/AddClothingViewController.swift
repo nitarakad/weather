@@ -8,12 +8,14 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class AddClothingViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     struct globalVariables {
         static var allClothing: Array<UIImage> = []
         static var clothingDict = Dictionary<UIImage, String>()
+        static var trying = Array<NSManagedObject>()
     }
     
     @IBOutlet weak var addClothingButton: UIButton!
@@ -33,6 +35,27 @@ class AddClothingViewController: UIViewController, UINavigationControllerDelegat
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        guard let appDelegate =
+          UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext =
+          appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest =
+          NSFetchRequest<NSManagedObject>(entityName: "Clothing")
+        
+        do {
+            globalVariables.trying = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        
+    }
+    
     @IBAction func takePhoto(_ sender: Any) {
         imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -46,6 +69,27 @@ class AddClothingViewController: UIViewController, UINavigationControllerDelegat
             print("no image")
             return
         }
+        
+        guard let appDelegate =
+          UIApplication.shared.delegate as? AppDelegate else {
+          return
+        }
+        
+        //**CORE DATA TRYING START**//
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let asData = imageTaken.pngData()
+        let entity = NSEntityDescription.entity(forEntityName: "Clothing", in: managedContext)!
+        let clothing = NSManagedObject(entity: entity, insertInto: managedContext)
+        clothing.setValue(asData, forKey: "image")
+        
+        do {
+            try managedContext.save()
+            globalVariables.trying.append(clothing)
+        } catch let error as NSError {
+            print("couldn't save. \(error), \(error.userInfo)")
+        }
+        //**CORE DATA TRYING END**//
+        
         globalVariables.allClothing.append(imageTaken)
         imageView.image = imageTaken
         inputTextField.isEnabled = true
@@ -60,6 +104,35 @@ extension AddClothingViewController: UITextFieldDelegate {
         scrollView.setContentOffset(resetToPoint, animated: true)
         if let length = inputTextField.text?.count, length > 0 {
             globalVariables.clothingDict[currentImage] = inputTextField.text
+            
+            //**CORE DATA TRYING START**//
+            
+            guard let appDelegate =
+              UIApplication.shared.delegate as? AppDelegate else {
+                print("app delegate not working after text field inputted")
+                return false
+            }
+            
+            let managedContext = appDelegate.persistentContainer.viewContext
+            
+            let asData = currentImage.pngData()
+            for clothing in globalVariables.trying {
+                let dataClothing = clothing.value(forKeyPath: "image") as? Data
+                if let asDataActual = asData, let dataClothingActual = dataClothing, asDataActual == dataClothingActual {
+                    clothing.setValue(inputTextField.text, forKey: "type")
+                }
+            }
+            
+            do {
+                try managedContext.save()
+            } catch let error as NSError {
+                print("couldn't save. \(error), \(error.userInfo)")
+            }
+            
+            
+            //**CORE DATA TRYING END**//
+            
+            
         }
         inputTextField.isEnabled = false
         
