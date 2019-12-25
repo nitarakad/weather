@@ -22,21 +22,8 @@ class AllClothingViewController: UIViewController {
         var currY = self.view.bounds.minY + 10.0
         let widthL = CGFloat(200.0)
         let heightL = CGFloat(50.0)
-//        for eachImage in AddClothingViewController.globalVariables.allClothing {
-//            let imageView = UIImageView()
-//            imageView.frame = CGRect(x: currX, y: currY, width: eachImage.size.width/10.0, height: eachImage.size.height/10.0)
-//            let label = UILabel()
-//            label.frame = CGRect(x: imageView.frame.minX, y: imageView.frame.maxY + 1.0, width: widthL, height: heightL)
-//            imageView.image = eachImage
-//            label.text = AddClothingViewController.globalVariables.clothingDict[eachImage]
-//            self.view.addSubview(imageView)
-//            self.view.addSubview(label)
-//            scrollView.addSubview(imageView)
-//            scrollView.addSubview(label)
-//            currY = label.frame.maxY + 10.0
-//        }
         
-        for clothing in AddClothingViewController.globalVariables.trying {
+        for clothing in AddClothingViewController.globalVariables.allClothing {
             let dataOfImage = clothing.value(forKeyPath: "image") as? Data
             let typeOfClothing = clothing.value(forKeyPath: "type") as? String
             guard let actualData = dataOfImage else {
@@ -86,7 +73,7 @@ class AllClothingViewController: UIViewController {
           NSFetchRequest<NSManagedObject>(entityName: "Clothing")
         
         do {
-            AddClothingViewController.globalVariables.trying = try managedContext.fetch(fetchRequest)
+            AddClothingViewController.globalVariables.allClothing = try managedContext.fetch(fetchRequest)
         } catch let error as NSError {
           print("Could not fetch. \(error), \(error.userInfo)")
         }

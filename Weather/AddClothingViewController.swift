@@ -13,9 +13,7 @@ import CoreData
 class AddClothingViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     struct globalVariables {
-        static var allClothing: Array<UIImage> = []
-        static var clothingDict = Dictionary<UIImage, String>()
-        static var trying = Array<NSManagedObject>()
+        static var allClothing = Array<NSManagedObject>()
     }
     
     @IBOutlet weak var addClothingButton: UIButton!
@@ -49,7 +47,7 @@ class AddClothingViewController: UIViewController, UINavigationControllerDelegat
           NSFetchRequest<NSManagedObject>(entityName: "Clothing")
         
         do {
-            globalVariables.trying = try managedContext.fetch(fetchRequest)
+            globalVariables.allClothing = try managedContext.fetch(fetchRequest)
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
@@ -75,7 +73,6 @@ class AddClothingViewController: UIViewController, UINavigationControllerDelegat
           return
         }
         
-        //**CORE DATA TRYING START**//
         let managedContext = appDelegate.persistentContainer.viewContext
         let asData = imageTaken.pngData()
         let entity = NSEntityDescription.entity(forEntityName: "Clothing", in: managedContext)!
@@ -84,13 +81,11 @@ class AddClothingViewController: UIViewController, UINavigationControllerDelegat
         
         do {
             try managedContext.save()
-            globalVariables.trying.append(clothing)
+            globalVariables.allClothing.append(clothing)
         } catch let error as NSError {
             print("couldn't save. \(error), \(error.userInfo)")
         }
-        //**CORE DATA TRYING END**//
         
-        globalVariables.allClothing.append(imageTaken)
         imageView.image = imageTaken
         inputTextField.isEnabled = true
         inputTextField.text = ""
@@ -103,9 +98,6 @@ extension AddClothingViewController: UITextFieldDelegate {
         inputTextField.resignFirstResponder()
         scrollView.setContentOffset(resetToPoint, animated: true)
         if let length = inputTextField.text?.count, length > 0 {
-            globalVariables.clothingDict[currentImage] = inputTextField.text
-            
-            //**CORE DATA TRYING START**//
             
             guard let appDelegate =
               UIApplication.shared.delegate as? AppDelegate else {
@@ -116,7 +108,7 @@ extension AddClothingViewController: UITextFieldDelegate {
             let managedContext = appDelegate.persistentContainer.viewContext
             
             let asData = currentImage.pngData()
-            for clothing in globalVariables.trying {
+            for clothing in globalVariables.allClothing {
                 let dataClothing = clothing.value(forKeyPath: "image") as? Data
                 if let asDataActual = asData, let dataClothingActual = dataClothing, asDataActual == dataClothingActual {
                     clothing.setValue(inputTextField.text, forKey: "type")
@@ -128,11 +120,6 @@ extension AddClothingViewController: UITextFieldDelegate {
             } catch let error as NSError {
                 print("couldn't save. \(error), \(error.userInfo)")
             }
-            
-            
-            //**CORE DATA TRYING END**//
-            
-            
         }
         inputTextField.isEnabled = false
         
