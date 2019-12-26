@@ -25,6 +25,10 @@ class ViewController: UIViewController {
     @IBAction func toAddClothingScreen(_ sender: Any) {
         print("Going to Add Clothing Screen")
     }
+    
+    @IBAction func toDeveloperToolsScreen(_ sender: Any) {
+        print("Going to Developer Tools Screen")
+    }
         
 }
 

@@ -52,6 +52,15 @@
                                     <segue destination="tgc-XM-FLT" kind="show" id="kvw-Yl-1y2"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P7W-aO-tSE">
+                                <rect key="frame" x="153" y="206" width="110" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Developer Tools"/>
+                                <connections>
+                                    <action selector="toDeveloperToolsScreen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eLm-yM-Z9k"/>
+                                    <segue destination="1qw-lP-Axf" kind="show" id="SIt-Fj-YIy"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -86,6 +95,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q9B-bE-x8Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1921.7391304347827" y="109.82142857142857"/>
+        </scene>
+        <!--Developer Tools View Controller-->
+        <scene sceneID="TCv-1Z-eKy">
+            <objects>
+                <tableViewController id="1qw-lP-Axf" customClass="DeveloperToolsViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="p5z-vn-Ukk">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="x3h-3d-hfj">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="x3h-3d-hfj" id="PwD-vX-lVE">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="1qw-lP-Axf" id="Upz-h9-d9e"/>
+                            <outlet property="delegate" destination="1qw-lP-Axf" id="tdT-TS-YZV"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="JZf-Mw-9SQ"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hcz-nY-gZx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="138" y="826"/>
         </scene>
         <!--Add Clothing View Controller-->
         <scene sceneID="hVu-26-xnG">
