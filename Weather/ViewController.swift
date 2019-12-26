@@ -6,6 +6,10 @@
 //  Copyright © 2019 Nitya Tarakad. All rights reserved.
 //
 
+/*
+ This is the opening screen of the application
+ */
+
 import UIKit
 
 class ViewController: UIViewController {

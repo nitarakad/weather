@@ -6,9 +6,15 @@
 //  Copyright © 2019 Nitya Tarakad. All rights reserved.
 //
 
+/*
+ In this View Controller, the user should be able to add pictures of their clothing
+ The user should be able to label what type of clothing they have added as well
+ */
+
 import Foundation
 import UIKit
 import CoreData
+
 
 class AddClothingViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     

@@ -6,6 +6,11 @@
 //  Copyright © 2019 Nitya Tarakad. All rights reserved.
 //
 
+/*
+ This View Controller is just used for debugging and developing purposes
+ Buttons are added to simulate activity
+ */
+
 import Foundation
 import UIKit
 import CoreData
@@ -62,9 +67,5 @@ class DeveloperToolsViewController: UITableViewController {
         }
         print("clear all clothing button selected")
     }
-    
-    
-    
-    
     
 }

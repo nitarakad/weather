@@ -6,6 +6,13 @@
 //  Copyright © 2019 Nitya Tarakad. All rights reserved.
 //
 
+/*
+ In this View Controller, the user should be able to view all the clothing they have added
+The user can see a whole list of their clothing
+
+ TODO: sort the clothing based off of the type of clothing there is
+ */
+
 import Foundation
 import UIKit
 import CoreData
