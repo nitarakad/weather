@@ -11,13 +11,25 @@
  location they inputted in the Location View Controller
  */
 
+// API Key: c89bc1dcb1b2def2d0944f132f4bf16a
+
+
 import Foundation
 import UIKit
 
 class WeatherViewController: UIViewController {
     
     override func viewDidLoad() {
-
+        super.viewDidLoad()
+        
+        let weatherInfo = WeatherInfo()
+        weatherInfo.getWeather(city: "Belmont")
     }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    
 }
 
