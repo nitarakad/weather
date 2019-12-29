@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22BE0F3223B8990A002BD38D /* DarkSkyWeatherInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BE0F3123B8990A002BD38D /* DarkSkyWeatherInfo.swift */; };
 		22C6729E23748ADA0026C852 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C6729D23748ADA0026C852 /* LocationViewController.swift */; };
 		22E7A88523B1B80900032434 /* AllClothingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E7A88423B1B80900032434 /* AllClothingViewController.swift */; };
 		22E7A88723B422DD00032434 /* DeveloperToolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E7A88623B422DD00032434 /* DeveloperToolsViewController.swift */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		22BE0F3123B8990A002BD38D /* DarkSkyWeatherInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkSkyWeatherInfo.swift; sourceTree = "<group>"; };
 		22C6729D23748ADA0026C852 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		22E7A88423B1B80900032434 /* AllClothingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllClothingViewController.swift; sourceTree = "<group>"; };
 		22E7A88623B422DD00032434 /* DeveloperToolsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperToolsViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				22E7A88423B1B80900032434 /* AllClothingViewController.swift */,
 				22E7A88623B422DD00032434 /* DeveloperToolsViewController.swift */,
 				22E7A88823B46AAA00032434 /* WeatherInfo.swift */,
+				22BE0F3123B8990A002BD38D /* DarkSkyWeatherInfo.swift */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -221,6 +224,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22BE0F3223B8990A002BD38D /* DarkSkyWeatherInfo.swift in Sources */,
 				22C6729E23748ADA0026C852 /* LocationViewController.swift in Sources */,
 				22E7A88523B1B80900032434 /* AllClothingViewController.swift in Sources */,
 				22FFB14623AC1391006DBECB /* AddClothingViewController.swift in Sources */,
