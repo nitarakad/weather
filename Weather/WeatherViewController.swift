@@ -22,8 +22,13 @@ class WeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let weatherInfo = WeatherInfo()
-        weatherInfo.getWeather(city: "Belmont")
+        //let weatherInfo = WeatherInfo()
+        //weatherInfo.getWeather(city: "Belmont")
+        
+        let darkSkyWeatherInfo = DarkSkyWeatherInfo()
+        let atlLongCoord = 33.7490
+        let atlLatCoord = 84.3880
+        darkSkyWeatherInfo.getDarkSkyWeatherInfo(longitudeCoord: atlLongCoord, latitudeCoord: atlLatCoord)
     }
     
     override func didReceiveMemoryWarning() {
