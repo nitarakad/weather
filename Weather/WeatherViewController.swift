@@ -17,18 +17,37 @@
 import Foundation
 import UIKit
 
-class WeatherViewController: UIViewController {
+class WeatherViewController: UIViewController, DarkSkyWeatherInfoDelegate {
+    
+    func didGetWeatherInfo(weather: DailyWeather) {
+        DispatchQueue.main.async {
+            for i in 0..<8 {
+                print("*** DAY \(i) ***")
+                print("apparent temperature min: \(weather.allAppTempMin[i])")
+                print("apparent temperature max: \(weather.allAppTempMax[i])")
+                print("actual temperature min: \(weather.allTempMin[i])")
+                print("actual temperature max: \(weather.allTempMax[i])")
+            }
+        }
+    }
+    
+    func didNotGetWeatherInfo(error: Error) {
+        DispatchQueue.main.async {
+            print("didn't get weather: \(error)")
+        }
+    }
+    
+    
+    var darkSkyWeatherInfo: DarkSkyWeatherInfo!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //let weatherInfo = WeatherInfo()
-        //weatherInfo.getWeather(city: "Belmont")
-        
-        let darkSkyWeatherInfo = DarkSkyWeatherInfo()
+        darkSkyWeatherInfo = DarkSkyWeatherInfo(delegate: self)
         let atlLongCoord = 33.7490
-        let atlLatCoord = 84.3880
-        darkSkyWeatherInfo.getDarkSkyWeatherInfo(longitudeCoord: atlLongCoord, latitudeCoord: atlLatCoord)
+        let atlLatCoord = -84.3880
+        darkSkyWeatherInfo.extractDarkSkyWeatherInfo(longitudeCoord: atlLongCoord, latitudeCoord: atlLatCoord)
+        
     }
     
     override func didReceiveMemoryWarning() {

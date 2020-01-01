@@ -11,6 +11,11 @@
 
 import Foundation
 
+protocol DarkSkyWeatherInfoDelegate {
+    func didGetWeatherInfo(weather: DailyWeather)
+    func didNotGetWeatherInfo(error: Error)
+}
+
 class DarkSkyWeatherInfo {
     
     // api key: fdd72903a77ffa0c395fbae9c1bcfed4
@@ -19,7 +24,13 @@ class DarkSkyWeatherInfo {
     
     private let darkSkyAPIKey = "fdd72903a77ffa0c395fbae9c1bcfed4"
     
-    func getDarkSkyWeatherInfo(longitudeCoord longCoord: Double, latitudeCoord latCoord: Double) {
+    private var delegate: DarkSkyWeatherInfoDelegate
+    
+    init(delegate: DarkSkyWeatherInfoDelegate) {
+      self.delegate = delegate
+    }
+    
+    func extractDarkSkyWeatherInfo(longitudeCoord longCoord: Double, latitudeCoord latCoord: Double) {
         guard let darkSkyBaseURL = URL(string: "https://api.darksky.net/forecast/") else {
             print("\(errorLog)/getDarkSkyWeatherInfo/unable to retrieve base url")
             return
@@ -29,42 +40,53 @@ class DarkSkyWeatherInfo {
         
         let darkSkyURL = darkSkyBaseURLWithKey.appendingPathComponent("\(longCoord),\(latCoord)")
         
-        URLSession.shared.dataTask(with: darkSkyURL) { (data, response, error) in
+        let networkSession = URLSession.shared
+        
+        let task = networkSession.dataTask(with: darkSkyURL) { (data, response, error) in
             if let error = error {
                 print("\(self.errorLog)/getDarkSkyWeatherInfo/request for data task failed/error: \(error)")
             } else if let data = data {
-                let rawJSON = String(data: data, encoding: String.Encoding.utf8)!
-                //print(rawJSON)
-                
                 do {
                     let darkSkyWeatherInfo = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! [String: AnyObject]
                     
-//                    for key in darkSkyWeatherInfo.keys {
-//                        print("****KEY: \(key) ****")
-//                        let contentsOfKey = darkSkyWeatherInfo[key]
-//                        print("contents of key:\n\(contentsOfKey)")
-//                    }
+                    let dailyWeatherInfo = darkSkyWeatherInfo["daily"]!["data"]! as! Array<Dictionary<String, AnyObject>>
                     
-//                    let allDailyWeatherInfo = darkSkyWeatherInfo["daily"] as! Dictionary<String, AnyObject>
-//                    for day in allDailyWeatherInfo {
-//                        print("*****")
-//                        print(day)
-//                    }
+                    let darkSkyDailyWeatherInfo = DailyWeather(dailyWeatherInfo: dailyWeatherInfo)
                     
-                    let justDailyWeatherInfo = darkSkyWeatherInfo["daily"]!["data"]! as! Array<AnyObject>
-                    for day in justDailyWeatherInfo {
-                        print("******")
-                        print(day)
-                    }
-                    
+                    self.delegate.didGetWeatherInfo(weather: darkSkyDailyWeatherInfo)
                     
                 } catch let jsonError as Error {
-                    print("\(self.errorLog)/getDarkSkyWeatherInfo/unable to serialize dark sky weather info/error: \(jsonError)")
+                    self.delegate.didNotGetWeatherInfo(error: jsonError)
                 }
-                
             }
-        }.resume()
+        }
+        task.resume()
     }
     
+}
+
+struct DailyWeather {
+    var allAppTempMin: Array<Double>
+    var allAppTempMax: Array<Double>
+    var allTempMin: Array<Double>
+    var allTempMax: Array<Double>
     
+    init(dailyWeatherInfo: Array<Dictionary<String, AnyObject>>) {
+        
+        allAppTempMin = Array<Double>()
+        allAppTempMax = Array<Double>()
+        allTempMin = Array<Double>()
+        allTempMax = Array<Double>()
+        
+        for day in dailyWeatherInfo {
+            let currAppTempMin = day["apparentTemperatureMin"]! as! Double
+            allAppTempMin.append(currAppTempMin)
+            let currAppTempMax = day["apparentTemperatureMax"]! as! Double
+            allAppTempMax.append(currAppTempMax)
+            let currTempMin = day["temperatureMin"]! as! Double
+            allTempMin.append(currTempMin)
+            let currTempMax = day["temperatureMax"]! as! Double
+            allTempMax.append(currTempMax)
+        }
+    }
 }
