@@ -38,7 +38,7 @@ class DarkSkyWeatherInfo {
         
         let darkSkyBaseURLWithKey = darkSkyBaseURL.appendingPathComponent(darkSkyAPIKey)
         
-        let darkSkyURL = darkSkyBaseURLWithKey.appendingPathComponent("\(longCoord),\(latCoord)")
+        let darkSkyURL = darkSkyBaseURLWithKey.appendingPathComponent("\(latCoord),\(longCoord)")
         
         let networkSession = URLSession.shared
         

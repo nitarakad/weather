@@ -11,14 +11,17 @@
  location they inputted in the Location View Controller
  */
 
-// API Key: c89bc1dcb1b2def2d0944f132f4bf16a
-
 
 import Foundation
 import UIKit
+import CoreLocation
 
 class WeatherViewController: UIViewController, DarkSkyWeatherInfoDelegate {
     
+    var darkSkyWeatherInfo: DarkSkyWeatherInfo!
+    
+    @IBOutlet weak var cityStateInputField: UITextField!
+
     func didGetWeatherInfo(weather: DailyWeather) {
         DispatchQueue.main.async {
             for i in 0..<8 {
@@ -37,16 +40,12 @@ class WeatherViewController: UIViewController, DarkSkyWeatherInfoDelegate {
         }
     }
     
-    
-    var darkSkyWeatherInfo: DarkSkyWeatherInfo!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         darkSkyWeatherInfo = DarkSkyWeatherInfo(delegate: self)
-        let atlLongCoord = 33.7490
-        let atlLatCoord = -84.3880
-        darkSkyWeatherInfo.extractDarkSkyWeatherInfo(longitudeCoord: atlLongCoord, latitudeCoord: atlLatCoord)
+        
+        cityStateInputField.delegate = self
         
     }
     
@@ -54,6 +53,43 @@ class WeatherViewController: UIViewController, DarkSkyWeatherInfoDelegate {
         super.didReceiveMemoryWarning()
     }
     
+    func allInfoOf(theCity city: String, withWeatherInfo darkSkyWeatherInfo: DarkSkyWeatherInfo) {
+        let geoCoder = CLGeocoder()
+        
+        print("user in all info")
+        geoCoder.geocodeAddressString(city) { (placemarks, error) in
+            guard
+                let placemarks = placemarks,
+                let location = placemarks.first?.location
+            else {
+                // handle no location found
+                return
+            }
+            
+            print("extracting weather info from: \(city), long: \(location.coordinate.longitude), lat: \(location.coordinate.latitude)")
+            darkSkyWeatherInfo.extractDarkSkyWeatherInfo(longitudeCoord: location.coordinate.longitude, latitudeCoord: location.coordinate.latitude)
+            
+        }
+    }
+}
+
+extension WeatherViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        cityStateInputField.resignFirstResponder()
+        guard let cityInput = cityStateInputField.text, cityInput.count > 0 else {
+            print("invalid city input, empty text given")
+            return false
+        }
+        
+        
+        allInfoOf(theCity: cityInput, withWeatherInfo: darkSkyWeatherInfo)
+        
+        print("user hit return button")
+        
+        return true
+    }
     
 }
 
