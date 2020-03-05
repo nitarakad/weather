@@ -17,12 +17,13 @@ import UIKit
 import CoreLocation
 
 class WeatherViewController: UIViewController, DarkSkyWeatherInfoDelegate {
-    
+
     var darkSkyWeatherInfo: DarkSkyWeatherInfo!
     
     @IBOutlet weak var cityStateInputField: UITextField!
+    //@IBOutlet weak var getDailyWeatherButton: UIButton!
 
-    func didGetWeatherInfo(weather: DailyWeather) {
+    func didGetWeatherInfo(weather: DailyWeather, with completion: @escaping (DailyWeather) -> Void) {
         DispatchQueue.main.async {
             for i in 0..<8 {
                 print("*** DAY \(i) ***")
@@ -31,6 +32,9 @@ class WeatherViewController: UIViewController, DarkSkyWeatherInfoDelegate {
                 print("actual temperature min: \(weather.allTempMin[i])")
                 print("actual temperature max: \(weather.allTempMax[i])")
             }
+            completion(weather)
+            LocationViewController.currentWeather = weather
+            print(LocationViewController.currentWeather.allAppTempMax.count)
         }
     }
     
@@ -78,6 +82,10 @@ extension WeatherViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         cityStateInputField.resignFirstResponder()
+        
+        let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+        let locationViewController = mainStoryBoard.instantiateViewController(identifier: "LocationScreen") as UIViewController
+        self.navigationController?.pushViewController(locationViewController, animated: true)
         guard let cityInput = cityStateInputField.text, cityInput.count > 0 else {
             print("invalid city input, empty text given")
             return false

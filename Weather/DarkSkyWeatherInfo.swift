@@ -12,7 +12,7 @@
 import Foundation
 
 protocol DarkSkyWeatherInfoDelegate {
-    func didGetWeatherInfo(weather: DailyWeather)
+    func didGetWeatherInfo(weather: DailyWeather, with completion: @escaping (DailyWeather) -> Void)
     func didNotGetWeatherInfo(error: Error)
 }
 
@@ -53,7 +53,9 @@ class DarkSkyWeatherInfo {
                     
                     let darkSkyDailyWeatherInfo = DailyWeather(dailyWeatherInfo: dailyWeatherInfo)
                     
-                    self.delegate.didGetWeatherInfo(weather: darkSkyDailyWeatherInfo)
+                    self.delegate.didGetWeatherInfo(weather: darkSkyDailyWeatherInfo, with: { _ in
+                        print("done")
+                    })
                     
                 } catch let jsonError as Error {
                     self.delegate.didNotGetWeatherInfo(error: jsonError)
