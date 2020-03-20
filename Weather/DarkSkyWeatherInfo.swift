@@ -10,9 +10,10 @@
 // We will be utilizing this data to get daily weather measurements
 
 import Foundation
+import UIKit
 
 protocol DarkSkyWeatherInfoDelegate {
-    func didGetWeatherInfo(weather: DailyWeather, with completion: @escaping (DailyWeather) -> Void)
+    func didGetWeatherInfo(weather: DailyWeather)
     func didNotGetWeatherInfo(error: Error)
 }
 
@@ -42,7 +43,7 @@ class DarkSkyWeatherInfo {
         
         let networkSession = URLSession.shared
         
-        let task = networkSession.dataTask(with: darkSkyURL) { (data, response, error) in
+        networkSession.dataTask(with: darkSkyURL) { (data, response, error) in
             if let error = error {
                 print("\(self.errorLog)/getDarkSkyWeatherInfo/request for data task failed/error: \(error)")
             } else if let data = data {
@@ -52,17 +53,13 @@ class DarkSkyWeatherInfo {
                     let dailyWeatherInfo = darkSkyWeatherInfo["daily"]!["data"]! as! Array<Dictionary<String, AnyObject>>
                     
                     let darkSkyDailyWeatherInfo = DailyWeather(dailyWeatherInfo: dailyWeatherInfo)
-                    
-                    self.delegate.didGetWeatherInfo(weather: darkSkyDailyWeatherInfo, with: { _ in
-                        print("done")
-                    })
+                    self.delegate.didGetWeatherInfo(weather: darkSkyDailyWeatherInfo)
                     
                 } catch let jsonError as Error {
                     self.delegate.didNotGetWeatherInfo(error: jsonError)
                 }
             }
-        }
-        task.resume()
+        }.resume()
     }
     
 }
