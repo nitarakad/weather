@@ -15,6 +15,7 @@
 import Foundation
 import UIKit
 import CoreLocation
+import CoreData
 
 class WeatherViewController: UIViewController, DarkSkyWeatherInfoDelegate {
     
@@ -27,6 +28,7 @@ class WeatherViewController: UIViewController, DarkSkyWeatherInfoDelegate {
     var maxLabels = Array<UILabel>()
     var minTempLabels = Array<UILabel>()
     var maxTempLabels = Array<UILabel>()
+    var wearButtons = Array<UIButton>()
     
     @IBOutlet weak var cityStateInputField: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -74,6 +76,15 @@ class WeatherViewController: UIViewController, DarkSkyWeatherInfoDelegate {
     @IBOutlet weak var maxTemp5: UILabel!
     @IBOutlet weak var maxTemp6: UILabel!
     @IBOutlet weak var maxTemp7: UILabel!
+    
+    @IBOutlet weak var wearButton0: UIButton!
+    @IBOutlet weak var wearButton1: UIButton!
+    @IBOutlet weak var wearButton2: UIButton!
+    @IBOutlet weak var wearButton3: UIButton!
+    @IBOutlet weak var wearButton4: UIButton!
+    @IBOutlet weak var wearButton5: UIButton!
+    @IBOutlet weak var wearButton6: UIButton!
+    @IBOutlet weak var wearButton7: UIButton!
     
     func didGetWeatherInfo(weather: DailyWeather) {
         DispatchQueue.main.async {
@@ -145,6 +156,15 @@ class WeatherViewController: UIViewController, DarkSkyWeatherInfoDelegate {
         maxTempLabels.append(maxTemp6)
         maxTempLabels.append(maxTemp7)
         
+        wearButtons.append(wearButton0)
+        wearButtons.append(wearButton1)
+        wearButtons.append(wearButton2)
+        wearButtons.append(wearButton3)
+        wearButtons.append(wearButton4)
+        wearButtons.append(wearButton5)
+        wearButtons.append(wearButton6)
+        wearButtons.append(wearButton7)
+        
         for label in dayLabels {
             scrollView.addSubview(label)
             label.isHidden = true
@@ -172,9 +192,37 @@ class WeatherViewController: UIViewController, DarkSkyWeatherInfoDelegate {
             label.isHidden = true
         }
         
-        scrollView.contentSize = CGSize(width: dayZeroLabel.frame.minX, height: maxLabel7.frame.maxY+100)
+        for btn in wearButtons {
+            scrollView.addSubview(btn)
+            btn.isHidden = true
+            btn.setTitle("What to Wear!", for: .normal)
+        }
+        
+        scrollView.contentSize = CGSize(width: dayZeroLabel.frame.minX, height: wearButton7.frame.maxY+100)
         
         cityStateInputField.delegate = self
+        
+    }
+    
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        guard let appDelegate =
+          UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext =
+          appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest =
+          NSFetchRequest<NSManagedObject>(entityName: "Clothing")
+        
+        do {
+            AddClothingViewController.globalVariables.allClothing = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
         
     }
     
@@ -269,6 +317,12 @@ extension WeatherViewController: UITextFieldDelegate {
         for label in maxTempLabels {
             label.isHidden = false
         }
+        
+        for btn in wearButtons {
+            btn.isHidden = false
+        }
+        
+        print("amount of clothing: \(AddClothingViewController.globalVariables.allClothing.count)")
         
         return true
     }
