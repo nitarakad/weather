@@ -32,7 +32,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "86"
             endingLineNumber = "86"
-            landmarkName = "allInfoOf(theCity:withWeatherInfo:completionHandler:)"
+            landmarkName = "didGetWeatherInfo(weather:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -48,8 +48,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "37"
             endingLineNumber = "37"
-            landmarkName = "didGetWeatherInfo(weather:)"
-            landmarkType = "7">
+            landmarkName = "WeatherViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -66,54 +66,6 @@
             endingLineNumber = "21"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "AF0C0A6D-C9CA-4298-94A0-15A3E1B05300"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Weather/WeatherViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
-            landmarkName = "textFieldShouldReturn(_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "AF0C0A6D-C9CA-4298-94A0-15A3E1B05300 - ed478f7de591356c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (__C.CLLocationCoordinate2D, Swift.Optional&lt;__C.NSError&gt;) -&gt; () in Weather.WeatherViewController.textFieldShouldReturn(__C.UITextField) -&gt; Swift.Bool"
-                  moduleName = "Weather"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nityatarakad/Desktop/weather/Weather/WeatherViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "91"
-                  endingLineNumber = "91"
-                  offsetFromSymbolStart = "812">
-               </Location>
-               <Location
-                  uuid = "AF0C0A6D-C9CA-4298-94A0-15A3E1B05300 - 1741ab22c4c3fb34"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.String) -&gt; () in closure #1 (__C.CLLocationCoordinate2D, Swift.Optional&lt;__C.NSError&gt;) -&gt; () in Weather.WeatherViewController.textFieldShouldReturn(__C.UITextField) -&gt; Swift.Bool"
-                  moduleName = "Weather"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nityatarakad/Desktop/weather/Weather/WeatherViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "92"
-                  endingLineNumber = "92"
-                  offsetFromSymbolStart = "112">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

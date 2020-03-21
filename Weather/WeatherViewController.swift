@@ -22,6 +22,12 @@ class WeatherViewController: UIViewController, DarkSkyWeatherInfoDelegate {
 
     var darkSkyWeatherInfo: DarkSkyWeatherInfo!
     
+    var dayLabels = Array<UILabel>()
+    var minLabels = Array<UILabel>()
+    var maxLabels = Array<UILabel>()
+    var minTempLabels = Array<UILabel>()
+    var maxTempLabels = Array<UILabel>()
+    
     @IBOutlet weak var cityStateInputField: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var dayZeroLabel: UILabel!
@@ -32,15 +38,54 @@ class WeatherViewController: UIViewController, DarkSkyWeatherInfoDelegate {
     @IBOutlet weak var dayFiveLabel: UILabel!
     @IBOutlet weak var daySixLabel: UILabel!
     @IBOutlet weak var daySevenLabel: UILabel!
-    //@IBOutlet weak var getDailyWeatherButton: UIButton!
+    
+    @IBOutlet weak var minLabel0: UILabel!
+    @IBOutlet weak var minLabel1: UILabel!
+    @IBOutlet weak var minLabel2: UILabel!
+    @IBOutlet weak var minLabel3: UILabel!
+    @IBOutlet weak var minLabel4: UILabel!
+    @IBOutlet weak var minLabel5: UILabel!
+    @IBOutlet weak var minLabel6: UILabel!
+    @IBOutlet weak var minLabel7: UILabel!
+    
+    @IBOutlet weak var minTemp0: UILabel!
+    @IBOutlet weak var minTemp1: UILabel!
+    @IBOutlet weak var minTemp2: UILabel!
+    @IBOutlet weak var minTemp3: UILabel!
+    @IBOutlet weak var minTemp4: UILabel!
+    @IBOutlet weak var minTemp5: UILabel!
+    @IBOutlet weak var minTemp6: UILabel!
+    @IBOutlet weak var minTemp7: UILabel!
 
+    @IBOutlet weak var maxLabel0: UILabel!
+    @IBOutlet weak var maxLabel1: UILabel!
+    @IBOutlet weak var maxLabel2: UILabel!
+    @IBOutlet weak var maxLabel3: UILabel!
+    @IBOutlet weak var maxLabel4: UILabel!
+    @IBOutlet weak var maxLabel5: UILabel!
+    @IBOutlet weak var maxLabel6: UILabel!
+    @IBOutlet weak var maxLabel7: UILabel!
+    
+    @IBOutlet weak var maxTemp0: UILabel!
+    @IBOutlet weak var maxTemp1: UILabel!
+    @IBOutlet weak var maxTemp2: UILabel!
+    @IBOutlet weak var maxTemp3: UILabel!
+    @IBOutlet weak var maxTemp4: UILabel!
+    @IBOutlet weak var maxTemp5: UILabel!
+    @IBOutlet weak var maxTemp6: UILabel!
+    @IBOutlet weak var maxTemp7: UILabel!
+    
     func didGetWeatherInfo(weather: DailyWeather) {
-        for i in 0..<8 {
-            print("*** DAY \(i) ***")
-            print("apparent temperature min: \(weather.allAppTempMin[i])")
-            print("apparent temperature max: \(weather.allAppTempMax[i])")
-            print("actual temperature min: \(weather.allTempMin[i])")
-            print("actual temperature max: \(weather.allTempMax[i])")
+        DispatchQueue.main.async {
+            for i in 0..<8 {
+                print("*** DAY \(i) ***")
+                print("apparent temperature min: \(weather.allAppTempMin[i])")
+                print("apparent temperature max: \(weather.allAppTempMax[i])")
+                print("actual temperature min: \(weather.allTempMin[i])")
+                self.minTempLabels[i].text = "\(weather.allTempMin[i])"
+                print("actual temperature max: \(weather.allTempMax[i])")
+                self.maxTempLabels[i].text = "\(weather.allTempMax[i])"
+            }
         }
     }
     
@@ -55,25 +100,79 @@ class WeatherViewController: UIViewController, DarkSkyWeatherInfoDelegate {
         
         darkSkyWeatherInfo = DarkSkyWeatherInfo(delegate: self)
         
-        scrollView.addSubview(dayZeroLabel)
-        scrollView.addSubview(dayOneLabel)
-        scrollView.addSubview(dayTwoLabel)
-        scrollView.addSubview(dayThreeLabel)
-        scrollView.addSubview(dayFourLabel)
-        scrollView.addSubview(dayFiveLabel)
-        scrollView.addSubview(daySixLabel)
-        scrollView.addSubview(daySevenLabel)
-
-        dayZeroLabel.isHidden = true
-        dayOneLabel.isHidden = true
-        dayTwoLabel.isHidden = true
-        dayThreeLabel.isHidden = true
-        dayFourLabel.isHidden = true
-        dayFiveLabel.isHidden = true
-        daySixLabel.isHidden = true
-        daySevenLabel.isHidden = true
+        dayLabels.append(dayZeroLabel)
+        dayLabels.append(dayOneLabel)
+        dayLabels.append(dayTwoLabel)
+        dayLabels.append(dayThreeLabel)
+        dayLabels.append(dayFourLabel)
+        dayLabels.append(dayFiveLabel)
+        dayLabels.append(daySixLabel)
+        dayLabels.append(daySevenLabel)
         
-        scrollView.contentSize = CGSize(width: dayZeroLabel.frame.minX, height: daySevenLabel.frame.maxY)
+        minLabels.append(minLabel0)
+        minLabels.append(minLabel1)
+        minLabels.append(minLabel2)
+        minLabels.append(minLabel3)
+        minLabels.append(minLabel4)
+        minLabels.append(minLabel5)
+        minLabels.append(minLabel6)
+        minLabels.append(minLabel7)
+        
+        minTempLabels.append(minTemp0)
+        minTempLabels.append(minTemp1)
+        minTempLabels.append(minTemp2)
+        minTempLabels.append(minTemp3)
+        minTempLabels.append(minTemp4)
+        minTempLabels.append(minTemp5)
+        minTempLabels.append(minTemp6)
+        minTempLabels.append(minTemp7)
+        
+        maxLabels.append(maxLabel0)
+        maxLabels.append(maxLabel1)
+        maxLabels.append(maxLabel2)
+        maxLabels.append(maxLabel3)
+        maxLabels.append(maxLabel4)
+        maxLabels.append(maxLabel5)
+        maxLabels.append(maxLabel6)
+        maxLabels.append(maxLabel7)
+        
+        maxTempLabels.append(maxTemp0)
+        maxTempLabels.append(maxTemp1)
+        maxTempLabels.append(maxTemp2)
+        maxTempLabels.append(maxTemp3)
+        maxTempLabels.append(maxTemp4)
+        maxTempLabels.append(maxTemp5)
+        maxTempLabels.append(maxTemp6)
+        maxTempLabels.append(maxTemp7)
+        
+        for label in dayLabels {
+            scrollView.addSubview(label)
+            label.isHidden = true
+        }
+        
+        for label in minLabels {
+            scrollView.addSubview(label)
+            label.isHidden = true
+            label.text = "Min: "
+        }
+        
+        for label in minTempLabels {
+            scrollView.addSubview(label)
+            label.isHidden = true
+        }
+        
+        for label in maxLabels {
+            scrollView.addSubview(label)
+            label.isHidden = true
+            label.text = "Max: "
+        }
+        
+        for label in maxTempLabels {
+            scrollView.addSubview(label)
+            label.isHidden = true
+        }
+        
+        scrollView.contentSize = CGSize(width: dayZeroLabel.frame.minX, height: maxLabel7.frame.maxY+100)
         
         cityStateInputField.delegate = self
         
@@ -154,6 +253,22 @@ extension WeatherViewController: UITextFieldDelegate {
         date = date.addingTimeInterval(TimeInterval(secondsInDay))
         daySevenLabel.text = df.string(from: date)
         daySevenLabel.isHidden = false
+        
+        for label in minLabels {
+            label.isHidden = false
+        }
+        
+        for label in minTempLabels {
+            label.isHidden = false
+        }
+        
+        for label in maxLabels {
+            label.isHidden = false
+        }
+        
+        for label in maxTempLabels {
+            label.isHidden = false
+        }
         
         return true
     }
