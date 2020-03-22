@@ -24,18 +24,19 @@ class AddClothingViewController: UIViewController, UINavigationControllerDelegat
     
     @IBOutlet weak var addClothingButton: UIButton!
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var pickerView: UIPickerView!
     
     var imagePicker: UIImagePickerController!
     var currentImage = UIImage()
     var resetToPoint = CGPoint()
     
+    let clothingOptions = ["t-shirt", "shorts", "pants", "jacket", "dress", "long sleeve"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        inputTextField.delegate = self
-        inputTextField.isEnabled = false
+        pickerView.delegate = self
         
     }
     
@@ -93,53 +94,55 @@ class AddClothingViewController: UIViewController, UINavigationControllerDelegat
         }
         
         imageView.image = imageTaken
-        inputTextField.isEnabled = true
-        inputTextField.text = ""
+        pickerView.isUserInteractionEnabled = true
         currentImage = imageTaken
     }
 }
 
-extension AddClothingViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        inputTextField.resignFirstResponder()
-        scrollView.setContentOffset(resetToPoint, animated: true)
-        if let length = inputTextField.text?.count, length > 0 {
-            
-            guard let appDelegate =
-              UIApplication.shared.delegate as? AppDelegate else {
-                print("app delegate not working after text field inputted")
-                return false
-            }
-            
-            let managedContext = appDelegate.persistentContainer.viewContext
-            
-            let asData = currentImage.pngData()
-            for clothing in globalVariables.allClothing {
-                let dataClothing = clothing.value(forKeyPath: "image") as? Data
-                if let asDataActual = asData, let dataClothingActual = dataClothing, asDataActual == dataClothingActual {
-                    clothing.setValue(inputTextField.text, forKey: "type")
-                }
-            }
-            
-            do {
-                try managedContext.save()
-            } catch let error as NSError {
-                print("couldn't save. \(error), \(error.userInfo)")
+extension AddClothingViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return clothingOptions.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return clothingOptions[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        print("what was selected: \(clothingOptions[row])")
+        let clothingOption = clothingOptions[row]
+        guard let appDelegate =
+          UIApplication.shared.delegate as? AppDelegate else {
+            print("app delegate not working after picker view option selected")
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let asData = currentImage.pngData()
+        for clothing in globalVariables.allClothing {
+            let dataClothing = clothing.value(forKeyPath: "image") as? Data
+            if let asDataActual = asData, let dataClothingActual = dataClothing, asDataActual == dataClothingActual {
+                clothing.setValue(clothingOption, forKey: "type")
             }
         }
-        inputTextField.isEnabled = false
+        
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("couldn't save. \(error), \(error.userInfo)")
+        }
+        
+        pickerView.isUserInteractionEnabled = false
         
         addClothingButton.setTitle("Add Another Clothing!", for: .normal)
         
-        print("user hit return button")
-        return true
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        resetToPoint = self.view.frame.origin
-        var point = inputTextField.frame.origin
-        point.y = point.y - 5
-        scrollView.setContentOffset(point, animated: true)
-        print("user begins editing text field")
+        print("user selected option")
+        return
+        
     }
 }

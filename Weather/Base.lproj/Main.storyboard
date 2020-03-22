@@ -121,16 +121,14 @@
                                         <rect key="frame" x="71" y="119" width="272" height="469"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Clothing Type" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LCe-1J-UaN">
-                                        <rect key="frame" x="71" y="596" width="272" height="34"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                    <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fG1-8Q-Lex">
+                                        <rect key="frame" x="22" y="588" width="370" height="73"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    </pickerView>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Jm-y4-7aZ">
-                                        <rect key="frame" x="128" y="653" width="158" height="30"/>
+                                        <rect key="frame" x="126" y="669" width="162" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="See All Clothing Added"/>
+                                        <state key="normal" title="See All Clothing Added!"/>
                                         <connections>
                                             <segue destination="iv2-1y-Z5W" kind="show" id="GUG-yf-BB0"/>
                                         </connections>
@@ -147,7 +145,7 @@
                     <connections>
                         <outlet property="addClothingButton" destination="oHw-8F-5CL" id="MqB-Ly-ZTc"/>
                         <outlet property="imageView" destination="MRd-25-Fha" id="Ava-QT-uNo"/>
-                        <outlet property="inputTextField" destination="LCe-1J-UaN" id="JI9-Wq-8Fm"/>
+                        <outlet property="pickerView" destination="fG1-8Q-Lex" id="F7v-vJ-ykd"/>
                         <outlet property="scrollView" destination="Fqf-h4-IcJ" id="Nt4-az-ohM"/>
                     </connections>
                 </viewController>
