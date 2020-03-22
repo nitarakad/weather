@@ -28,10 +28,12 @@ class WeatherViewController: UIViewController, DarkSkyWeatherInfoDelegate {
     var maxLabels = Array<UILabel>()
     var minTempLabels = Array<UILabel>()
     var maxTempLabels = Array<UILabel>()
-    var wearButtons = Array<UIButton>()
+    var allWeatherTypes = Array<UILabel>()
     
     @IBOutlet weak var cityStateInputField: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var dataView: UIView!
+    
     @IBOutlet weak var dayZeroLabel: UILabel!
     @IBOutlet weak var dayOneLabel: UILabel!
     @IBOutlet weak var dayTwoLabel: UILabel!
@@ -77,14 +79,14 @@ class WeatherViewController: UIViewController, DarkSkyWeatherInfoDelegate {
     @IBOutlet weak var maxTemp6: UILabel!
     @IBOutlet weak var maxTemp7: UILabel!
     
-    @IBOutlet weak var wearButton0: UIButton!
-    @IBOutlet weak var wearButton1: UIButton!
-    @IBOutlet weak var wearButton2: UIButton!
-    @IBOutlet weak var wearButton3: UIButton!
-    @IBOutlet weak var wearButton4: UIButton!
-    @IBOutlet weak var wearButton5: UIButton!
-    @IBOutlet weak var wearButton6: UIButton!
-    @IBOutlet weak var wearButton7: UIButton!
+    @IBOutlet weak var weatherType0: UILabel!
+    @IBOutlet weak var weatherType1: UILabel!
+    @IBOutlet weak var weatherType2: UILabel!
+    @IBOutlet weak var weatherType3: UILabel!
+    @IBOutlet weak var weatherType4: UILabel!
+    @IBOutlet weak var weatherType5: UILabel!
+    @IBOutlet weak var weatherType6: UILabel!
+    @IBOutlet weak var weatherType7: UILabel!
     
     func didGetWeatherInfo(weather: DailyWeather) {
         DispatchQueue.main.async {
@@ -96,6 +98,12 @@ class WeatherViewController: UIViewController, DarkSkyWeatherInfoDelegate {
                 self.minTempLabels[i].text = "\(weather.allTempMin[i])"
                 print("actual temperature max: \(weather.allTempMax[i])")
                 self.maxTempLabels[i].text = "\(weather.allTempMax[i])"
+                print("precip type: \(weather.allPrecip[i])")
+                print("precip prob: \(weather.allPrecipProb[i])")
+                print("cloud cover %: \(weather.allCloudCover[i])")
+                print("humidity %: \(weather.allHumidity[i])")
+                print("weather type: \(weather.allWeatherTypes[i])")
+                self.allWeatherTypes[i].text = self.interpretWeatherTypes(weatherTypes: weather.allWeatherTypes[i])
             }
         }
     }
@@ -104,6 +112,44 @@ class WeatherViewController: UIViewController, DarkSkyWeatherInfoDelegate {
         DispatchQueue.main.async {
             print("didn't get weather: \(error)")
         }
+    }
+    
+    func interpretWeatherTypes(weatherTypes: Array<WeatherType>) -> String {
+        var weatherDescription = ""
+        for weather in weatherTypes {
+            if weather == .sunny {
+                weatherDescription.append("sunny, ")
+            } else if weather == .cloudy_high {
+                weatherDescription.append("very cloudy, ")
+            } else if weather == .cloudy_partly {
+                weatherDescription.append("partly cloudy,")
+            } else if weather == .rain_low {
+                weatherDescription.append("low rain, ")
+            } else if weather == .rain_med {
+                weatherDescription.append("some rain, ")
+            } else if weather == .rain_high {
+                weatherDescription.append("high rain, ")
+            } else if weather == .snow_high {
+                weatherDescription.append("lots of snow, ")
+            } else if weather == .snow_med {
+                weatherDescription.append("some snow, ")
+            } else if weather == .snow_low {
+                weatherDescription.append("low snow, ")
+            } else if weather == .sleet_low {
+                weatherDescription.append("low sleet, ")
+            } else if weather == .sleet_med {
+                weatherDescription.append("medium sleet, ")
+            } else if weather == .sleet_high {
+                weatherDescription.append("lots of sleet, ")
+            } else if weather == .humid_low {
+                weatherDescription.append("low humidity")
+            } else if weather == .humid_med {
+                weatherDescription.append("some humidity")
+            } else if weather == .humid_high {
+                weatherDescription.append("lots of humidity")
+            }
+        }
+        return weatherDescription
     }
     
     override func viewDidLoad() {
@@ -156,55 +202,64 @@ class WeatherViewController: UIViewController, DarkSkyWeatherInfoDelegate {
         maxTempLabels.append(maxTemp6)
         maxTempLabels.append(maxTemp7)
         
-        wearButtons.append(wearButton0)
-        wearButtons.append(wearButton1)
-        wearButtons.append(wearButton2)
-        wearButtons.append(wearButton3)
-        wearButtons.append(wearButton4)
-        wearButtons.append(wearButton5)
-        wearButtons.append(wearButton6)
-        wearButtons.append(wearButton7)
+        allWeatherTypes.append(weatherType0)
+        allWeatherTypes.append(weatherType1)
+        allWeatherTypes.append(weatherType2)
+        allWeatherTypes.append(weatherType3)
+        allWeatherTypes.append(weatherType4)
+        allWeatherTypes.append(weatherType5)
+        allWeatherTypes.append(weatherType6)
+        allWeatherTypes.append(weatherType7)
         
         for label in dayLabels {
             scrollView.addSubview(label)
             label.isHidden = true
+            label.frame.origin.x = 40
         }
+        
         
         for label in minLabels {
             scrollView.addSubview(label)
             label.isHidden = true
             label.text = "Min: "
+            label.frame.origin.x = 40
         }
         
         for label in minTempLabels {
             scrollView.addSubview(label)
             label.isHidden = true
+            label.frame.origin.x = 90
         }
         
         for label in maxLabels {
             scrollView.addSubview(label)
             label.isHidden = true
             label.text = "Max: "
+            label.frame.origin.x = 240
         }
         
         for label in maxTempLabels {
             scrollView.addSubview(label)
             label.isHidden = true
+            label.frame.origin.x = 290
         }
         
-        for btn in wearButtons {
-            scrollView.addSubview(btn)
-            btn.isHidden = true
-            btn.setTitle("What to Wear!", for: .normal)
+        for lbl in allWeatherTypes {
+            scrollView.addSubview(lbl)
+            lbl.isHidden = true
+            lbl.frame.origin.x = 40
         }
         
-        scrollView.contentSize = CGSize(width: dayZeroLabel.frame.minX, height: wearButton7.frame.maxY+100)
+        scrollView.contentSize = CGSize(width: dataView.frame.minX, height: dataView.frame.maxY)
+        dataView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        dataView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        dataView.topAnchor.constraint(equalTo: cityStateInputField.bottomAnchor).isActive = true
+        dataView.addSubview(scrollView)
         
         cityStateInputField.delegate = self
         
     }
     
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         guard let appDelegate =
@@ -318,8 +373,8 @@ extension WeatherViewController: UITextFieldDelegate {
             label.isHidden = false
         }
         
-        for btn in wearButtons {
-            btn.isHidden = false
+        for label in allWeatherTypes {
+            label.isHidden = false
         }
         
         print("amount of clothing: \(AddClothingViewController.globalVariables.allClothing.count)")
