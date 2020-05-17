@@ -217,7 +217,6 @@ class WeatherViewController: UIViewController, DarkSkyWeatherInfoDelegate {
             label.frame.origin.x = 40
         }
         
-        
         for label in minLabels {
             scrollView.addSubview(label)
             label.isHidden = true
@@ -357,24 +356,46 @@ extension WeatherViewController: UITextFieldDelegate {
         daySevenLabel.text = df.string(from: date)
         daySevenLabel.isHidden = false
         
-        for label in minLabels {
-            label.isHidden = false
-        }
+        let currX = dataView.bounds.minX
+        var currY = dataView.bounds.minY
+        let widthL = CGFloat(200.0)
+        let heightL = CGFloat(50.0)
         
-        for label in minTempLabels {
-            label.isHidden = false
-        }
-        
-        for label in maxLabels {
-            label.isHidden = false
-        }
-        
-        for label in maxTempLabels {
-            label.isHidden = false
-        }
-        
-        for label in allWeatherTypes {
-            label.isHidden = false
+        for i in 0..<8 {
+            minLabels[i].isHidden = false
+            minTempLabels[i].isHidden = false
+            maxLabels[i].isHidden = false
+            maxTempLabels[i].isHidden = false
+            allWeatherTypes[i].isHidden = false
+            
+            for clothing in AddClothingViewController.globalVariables.allClothing {
+                let dataOfImage = clothing.value(forKeyPath: "image") as? Data
+                let typeOfClothing = clothing.value(forKeyPath: "type") as? String
+                guard let actualData = dataOfImage else {
+                    print("couldn't get data of image of clothing")
+                    return false
+                }
+                guard let labelOfClothing = typeOfClothing else {
+                    print("couldn't get type of clothing")
+                    return false
+                }
+                let imageOfClothing = UIImage(data: actualData)
+                guard let actualImageOfClothing = imageOfClothing else {
+                    print("image couldn't be obtained")
+                    return false
+                }
+                let imageView = UIImageView()
+                
+                let eachImage = actualImageOfClothing.rotate(radians: .pi/2)
+                imageView.frame = CGRect(x: currX, y: currY, width: eachImage.size.width/10.0, height: eachImage.size.height/10.0)
+                let label = UILabel()
+                label.frame = CGRect(x: imageView.frame.minX, y: imageView.frame.maxY + 1.0, width: widthL, height: heightL)
+                
+                imageView.image = eachImage
+                
+                label.text = labelOfClothing
+                
+            }
         }
         
         print("amount of clothing: \(AddClothingViewController.globalVariables.allClothing.count)")

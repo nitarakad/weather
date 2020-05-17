@@ -23,22 +23,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "74C420B1-A8F3-4360-A38C-5AE2D62D7EA5"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Weather/WeatherViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "WeatherViewController"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "4AABEF17-3BDB-47A2-B886-0389E465FE7E"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -66,38 +50,6 @@
             endingLineNumber = "74"
             landmarkName = "extractDarkSkyWeatherInfo(longitudeCoord:latitudeCoord:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "27BAF6B0-F38E-4D03-BB3E-56DA1685AD69 - f0ede902763849"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Weather.DarkSkyWeatherInfo.extractDarkSkyWeatherInfo(longitudeCoord: Swift.Double, latitudeCoord: Swift.Double, completion: (Swift.String) -&gt; ()) -&gt; ()"
-                  moduleName = "Weather"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nityatarakad/Desktop/weather/Weather/DarkSkyWeatherInfo.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "56"
-                  endingLineNumber = "56"
-                  offsetFromSymbolStart = "2600">
-               </Location>
-               <Location
-                  uuid = "27BAF6B0-F38E-4D03-BB3E-56DA1685AD69 - 72d2258eaee45861"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Weather.DailyWeather) -&gt; () in closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Weather.DarkSkyWeatherInfo.extractDarkSkyWeatherInfo(longitudeCoord: Swift.Double, latitudeCoord: Swift.Double, completion: (Swift.String) -&gt; ()) -&gt; ()"
-                  moduleName = "Weather"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nityatarakad/Desktop/weather/Weather/DarkSkyWeatherInfo.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "57"
-                  endingLineNumber = "57"
-                  offsetFromSymbolStart = "92">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -130,6 +82,38 @@
             endingLineNumber = "80"
             landmarkName = "extractDarkSkyWeatherInfo(longitudeCoord:latitudeCoord:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "AC521C61-EF9A-4460-B8FF-7E4AD961A6E2 - 71513f97ac4bdf2a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Weather.DarkSkyWeatherInfo.extractDarkSkyWeatherInfo(longitudeCoord: Swift.Double, latitudeCoord: Swift.Double) -&gt; ()"
+                  moduleName = "Weather"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nityatarakad/Desktop/weather/Weather/DarkSkyWeatherInfo.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "80"
+                  endingLineNumber = "80"
+                  offsetFromSymbolStart = "1312">
+               </Location>
+               <Location
+                  uuid = "AC521C61-EF9A-4460-B8FF-7E4AD961A6E2 - 45db3afcc0ac69d2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Weather.DarkSkyWeatherInfo.extractDarkSkyWeatherInfo(longitudeCoord: Swift.Double, latitudeCoord: Swift.Double) -&gt; ()"
+                  moduleName = "Weather"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nityatarakad/Desktop/weather/Weather/DarkSkyWeatherInfo.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "80"
+                  endingLineNumber = "80"
+                  offsetFromSymbolStart = "2716">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
